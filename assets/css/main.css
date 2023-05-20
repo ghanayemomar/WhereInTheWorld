@@ -38,7 +38,6 @@
 
 .dark-mode {
     margin-right: 4%;
-    align-items: center;
     font-size: 16px;
 
 }
@@ -191,7 +190,7 @@ img {
     .title {
         font-size: clamp(14px, 4vw, 20px);
         position: static;
-        align-items: center;
+        /* align-items: center; */
         margin-left: 5%;
     }
 
@@ -199,7 +198,6 @@ img {
         font-size: clamp(14px, 4vw, 20px);
         position: static;
         right: 0;
-        align-items: center;
         margin-right: 5%;
 
     }

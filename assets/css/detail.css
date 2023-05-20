@@ -27,29 +27,26 @@
 }
 
 .title {
-    flex-shrink: 0;
+    margin-left: 5%;
     font-weight: 800;
-    font-size: 25px;
-    position: relative;
-    left: 5%;
+    font-size: clamp(16px, 6vw, 23px);
 }
 
 .dark-mode {
-    display: flex;
-    position: relative;
-    right: 5%;
-    align-items: center;
-    font-size: 1.2rem;
+    margin-right: 5%;
+    font-size: 16px;
+
 }
 
-.dark-mode>p {
-    margin-left: 0.4rem;
+.dark-mode>span {
+    margin-left: 0.5rem;
     font-weight: 600;
+    font-size: 16px;
 }
 
 .wrapper {
-    margin-top: 3rem;
-    margin-left: 6%;
+    margin: 3rem 6%;
+    max-width: 88%;
     background-color: #fafafa;
 }
 
@@ -59,7 +56,7 @@
 }
 
 .button>button {
-    width: 100px;
+    width: 120px;
     border-radius: 5px;
     padding: 7px;
     background-color: #ffffff;
@@ -71,57 +68,66 @@
 
 .button>button>i {
     position: relative;
-    left: -2%;
+    left: -4%;
 }
 
 .button>button:hover {
     cursor: pointer;
 }
 
+
 .content {
     display: flex;
     flex-direction: row;
+    max-width: 100%;
 }
 
 .image {
-    height: 350px;
-    min-width: 350px;
+    display: flex;
+    width: 45%;
 }
 
-.image>img {
+img {
+    flex-basis: 50%;
     width: 100%;
-    height: 100%;
+    height: 400px;
 }
 
 .details {
-    margin-left: 6rem;
-    margin-top: 1rem;
+    width: 55%;
+    margin: 1rem;
+    margin-top: 3rem;
 }
 
 .country-name {
     margin-bottom: 1.5rem;
 }
 
+.country-name>h1 {
+    font-weight: 800;
+    font-size: 30px;
+}
+
 .info-wrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.info1,
-.info2 {
-    display: flex;
-    flex-direction: column;
-    margin-right: 9rem;
+ul li {
+    margin-bottom: 0.6rem;
 }
 
-.info1>p,
-.info2>p {
-    margin-bottom: 0.5rem;
+.label {
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .border {
     display: flex;
     flex-direction: row;
+    align-items: center;
     margin-top: 3.5rem;
 }
 
@@ -131,13 +137,16 @@
     margin-left: 14px;
 }
 
-.countries>p {
+.border>span {
+    font-weight: 600;
+}
+
+.countries>span {
     text-align: center;
     margin-right: 10px;
-    margin-bottom: 1rem;
     width: 100px;
     height: 25px;
-    padding: 2px;
+    padding: 3.1px;
     background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
@@ -159,7 +168,6 @@
         background-color: #ffffff;
         margin-bottom: 0px;
         box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.11);
-        max-width: 100%;
     }
 
     .header>h2 {
@@ -168,15 +176,16 @@
     }
 
     .title {
+        font-size: clamp(16px, 4vw, 20px);
         position: static;
-        left: 0;
-        align-items: center;
+        margin-left: 1%;
     }
 
     .dark-mode {
+        font-size: clamp(16px, 4vw, 20px);
         position: static;
-        align-items: center;
-        font-size: 16px;
+        margin-right: 1%;
+
     }
 
     .button {
@@ -187,7 +196,6 @@
 
     .wrapper {
         margin: auto;
-        padding-left: 30px;
         box-sizing: border-box;
         background-color: #fafafa
     }
@@ -217,23 +225,28 @@
     }
 
     .info2 {
+        width: 250px;
         margin-top: 2rem;
         position: static;
         right: 0;
     }
 
     .border {
+        display: flex;
         margin-top: 1rem;
+        align-items: flex-start;
         flex-direction: column;
     }
 
     .countries {
         flex-wrap: nowrap;
-        margin-top: 2rem;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1rem;
         margin-left: 0px;
     }
 
-    .countries>p {
+    .countries>span {
         margin-right: 0.5rem;
         margin-bottom: 3rem;
     }
