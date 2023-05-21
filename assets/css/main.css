@@ -4,9 +4,11 @@
     font-family: 'Nunito Sans', sans-serif;
     font-size: 14px;
 }
-body{
+
+body {
     background-color: #fafafa;
 }
+
 .container {
     max-width: 100%;
     display: flex;
@@ -192,14 +194,14 @@ img {
         font-size: clamp(14px, 4vw, 20px);
         position: static;
         /* align-items: center; */
-        margin-left: 5%;
+        margin-left: 1%;
     }
 
     .dark-mode {
         font-size: clamp(14px, 4vw, 20px);
         position: static;
         right: 0;
-        margin-right: 5%;
+        margin-right: 3%;
 
     }
 
