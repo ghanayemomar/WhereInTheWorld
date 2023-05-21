@@ -4,9 +4,10 @@
     font-family: 'Nunito Sans', sans-serif;
     font-size: 14px;
 }
-
-.container {
+body{
     background-color: #fafafa;
+}
+.container {
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -33,7 +34,7 @@
 .title {
     font-weight: 800;
     font-size: clamp(18px, 6vw, 23px);
-    margin-left: 5%;
+    margin-left: 4%;
 }
 
 .dark-mode {
