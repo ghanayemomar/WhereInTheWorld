@@ -135,7 +135,7 @@ body {
 
 .card-container {
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #ffffff;
     width: 100%;
     height: 330px;
@@ -146,7 +146,7 @@ img {
     height: 160px;
     object-fit: cover;
     width: 100%;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 5px 5px 0px 0px;
 }
 
 .description-container {
