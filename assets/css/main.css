@@ -18,7 +18,7 @@ body {
 .header {
     display: flex;
     position: sticky;
-    top: 0px;
+    top: -1px;
     left: 0px;
     right: 0px;
     justify-content: space-between;
@@ -135,7 +135,7 @@ body {
 
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-template-rows: auto;
     grid-gap: 5rem;
 }
@@ -176,7 +176,7 @@ img {
 
 .country>h2 {
     width: 100%;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 800;
 }
 
@@ -190,18 +190,18 @@ ul {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 670px) {
 
     .header {
         padding: 35px 20px;
     }
 
     .title {
-        font-size: clamp(14px, 4vw, 20px);
+        font-size: clamp(10px, 4vw, 20px);
     }
 
     .dark-mode {
-        font-size: clamp(14px, 4vw, 20px);
+        font-size: clamp(10px, 4vw, 20px);
     }
 
     .wrapper {
@@ -229,11 +229,11 @@ ul {
 
     .cards-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(1fr));
+        grid-template-columns: repeat(auto-fill, minmax(200px, 350px));
         max-width: 100%;
         row-gap: 3rem;
         justify-content: center;
-        padding: 35px 30px 0px 30px;
+        padding: 35px 10% 0px 10%;
     }
 
     .card-container {
