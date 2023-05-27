@@ -2,105 +2,123 @@
 <html>
 
 <head>
+    <!-- Meta -->
     <meta charset="utf-8" />
     <meta name="description" content="Where in the world?" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail | Week 1</title>
-    <link rel="stylesheet" href="./assets/css/detail.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!-- Title -->
+    <title>Index | Week 2</title>
+    <!-- Required Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap & CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/css/detail.css" />
+
+    <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/d20cd21b4f.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-    <div class="container">
-        <header class="header">
-            <h1 class="title">Where in the world?</h1>
-            <button class="dark-mode-button"><i class="dark-mode fa-regular fa-moon"><span>Dark Mode</span></i></button>
-        </header>
-        </header>
-        <div class="wrapper">
-
-            <div class="button">
-                <button><i class="fa-solid fa-arrow-left"></i>
-                    Back
-                </button>
-            </div>
-
-            <div class="content">
-
-                <div class="image">
-                    <img src="assets/images/bl.svg">
-                </div>
-
-                <div class="details">
-                    <div class="country-name">
-                        <h1>Belgium</h1>
-                    </div>
-                    <div class="info-wrapper">
-
-                        <div class="info1">
-                            <ul>
-                                <li>
-                                    <span class="label">Native Name:</span>
-                                    <span class="value">Belgie</span>
-                                </li>
-                                <li>
-                                    <span class="label">Population:</span>
-                                    <span class="value">11,319,511</span>
-                                </li>
-                                <li>
-                                    <span class="label">Region:</span>
-                                    <span class="value">Europe</span>
-                                </li>
-                                <li>
-                                    <span class="label">Sub Region:</span>
-                                    <span class="value">Western Europe</span>
-                                </li>
-                                <li>
-                                    <span class="label">Capital:</span>
-                                    <span class="value">Brussels</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="info2">
-                            <ul>
-                                <li>
-                                    <span class="label">Top Level Domain: </span>
-                                    <span class="value">.be</span>
-                                </li>
-                                <li>
-                                    <span class="label">Currencies:</span>
-                                    <span class="value">Euro</span>
-                                </li>
-                                <li>
-                                    <span class="label">Languages:</span>
-                                    <span class="value">Dutch, French, Greman</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                    <div class="border">
-                        <span>Border Countries: </span>
-                        <div class="countries">
-                            <span>France</span>
-                            <span>Germany</span>
-                            <span>Netherlands</span>
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-            </div>
-
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg shadow-sm mb-lg-3 mb-0">
+        <div class="container justify-content-between py-4">
+            <span class="title">Where in the world?</span>
+            <button type="button" class="btn p-0">
+                <i class="dark-mode fa-regular fa-moon"><span>Dark Mode</span></i>
+            </button>
         </div>
+    </nav>
+    <!-- NavBar -->
+
+    <!-- Button -->
+    <div class="container py-5 px-4 px-lg-0">
+        <button type="button" class="btn back-btn px-lg-4 py-2 px-4 ">
+            <i class="fa-solid fa-arrow-left"><span>Back</span></i>
+        </button>
     </div>
+    <!-- Button -->
+
+    <!-- Content -->
+    <div class="container px-4 px-lg-0 my-4">
+        <div class="row">
+            <div class="col-lg-5 col-12">
+                <img class="img-fluid" src="assets/images/bl.svg">
+            </div>
+            <!--  -->
+            <!--  -->
+            <!--  -->
+            <div class="custom-col col-lg-6 col-12">
+                <div class="row row-cols-1 title mb-4 mt-5">
+                    <span>Belgium</span>
+                </div>
+                <!--  -->
+                <!--  -->
+                <!--  -->
+                <div class="d-flex justify-content-between flex-column flex-md-row">
+                    <div class="info1">
+                        <ul>
+                            <li>
+                                <span class="label">Native Name:</span>
+                                <span class="value">Belgie</span>
+                            </li>
+                            <li>
+                                <span class="label">Population:</span>
+                                <span class="value">11,319,511</span>
+                            </li>
+                            <li>
+                                <span class="label">Region:</span>
+                                <span class="value">Europe</span>
+                            </li>
+                            <li>
+                                <span class="label">Sub Region:</span>
+                                <span class="value">Western Europe</span>
+                            </li>
+                            <li>
+                                <span class="label">Capital:</span>
+                                <span class="value">Brussels</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="info2 mt-4 mt-sm-0">
+                        <ul>
+                            <li>
+                                <span class="label">Top Level Domain: </span>
+                                <span class="value">.be</span>
+                            </li>
+                            <li>
+                                <span class="label">Currencies:</span>
+                                <span class="value">Euro</span>
+                            </li>
+                            <li>
+                                <span class="label">Languages:</span>
+                                <span class="value">Dutch, French, Greman</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="w-100 my-3 my-lg-5 d-flex flex-column flex-lg-row align-items-lg-center align-items-start">
+                    <div class="custom-border">
+                        <span>Border Countries:</span>
+                    </div>
+                    <div class="w-100 d-flex flex-row flex-wrap my-3 my-md-0">
+                        <span class="text">France</span>
+                        <span class="text">Germany</span>
+                        <span class="text">Netherlands</span>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <!--  -->
+            <!--  -->
+        </div> <!-- Row -->
+    </div> <!-- Container -->
+
+    <!-- Content -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>

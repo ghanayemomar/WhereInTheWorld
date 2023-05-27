@@ -2,38 +2,54 @@
 <html>
 
 <head>
+    <!-- Meta -->
     <meta charset="utf-8" />
     <meta name="description" content="Where in the world?" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>Index | Week 1</title>
-    <link rel="stylesheet" href="./assets/css/main.css" />
-
+    <!-- Title -->
+    <title>Index | Week 2</title>
+    <!-- Required Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap & CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 
+    <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/d20cd21b4f.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-    <div class="container">
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg shadow-sm ">
+        <div class="container justify-content-between py-3">
+            <span class="title">Where in the world?</span>
+            <button type="button" class="btn p-0">
+                <i class="dark-mode fa-regular fa-moon"><span>Dark Mode</span></i>
+            </button>
+        </div>
+    </nav>
+    <!-- NavBar -->
 
-        <header class="header">
-            <h1 class="title">Where in the world?</h1>
 
-            <button class="dark-mode-button"><i class="dark-mode fa-regular fa-moon"><span>Dark Mode</span></i></button>
-        </header>
-
-        <div class="wrapper">
-
-            <div class="seach-filter-container">
-                <div class="search-container">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Search for a country..." />
+    <!-- SearchAndFilterContainer -->
+    <div class="container my-5">
+        <div class="row justify-content-between gy-5">
+            <!-- Search -->
+            <div class="col-md-5 col-12">
+                <div class="input-group search-div">
+                    <span class="input-group-text border-0 py-3" id="inputGroup-sizing-default"><i
+                            class="fa-solid fa-magnifying-glass ps-4"></i>
+                    </span>
+                    <input type="text" placeholder="Search for a country" class="form-control"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
-
-
+            </div>
+            <!-- Search -->
+            <!-- DrowDown List -->
+            <div class="col-auto">
                 <div class="dropdown-container">
                     <div class="dropdown-select">
                         <span class="select">Filter by Region</span>
@@ -47,20 +63,23 @@
                         <div class="dropdown-list_item">Oceania</div>
                     </div>
                 </div>
-
             </div>
+            <!-- DrowDown List -->
+        </div>
+    </div>
+    <!-- SearchAndFilterContainer -->
 
 
-            <div class="cards-container">
-
-                <a class="card-container" href="#">
-                    <img src="assets/images/de.svg">
-
-                    <div class="description-container">
-                        <div class="country">
-                            <h2>Germany</h2>
-                        </div>
-                        <ul >
+    <!-- Card's Container -->
+    <div class="container mb-5">
+        <div class="row gy-5 gx-lg-5">
+            <!--  -->
+            <div class="card-container col-12 col-md-6 col-lg-4 col-xxl-3 ">
+                <a class="card">
+                    <img src="assets/images/de.svg" class="card-img-top" alt="Germany">
+                    <div class="card-body">
+                        <span class="card-title">Germany</span>
+                        <ul>
                             <li>
                                 <span class="label">Population:</span>
                                 <span class="value">81,770,900</span>
@@ -76,19 +95,14 @@
                         </ul>
                     </div>
                 </a>
-
-
-
-
-
-                <a class="card-container" href="#">
-                    <img src="assets/images/us.svg">
-
-                    <div class="description-container">
-                        <div class="country">
-                            <h2>United States of America</h2>
-                        </div>
-                        <ul >
+            </div>
+            <!--  -->
+            <div class="card-container col-12 col-md-6 col-lg-4 col-xxl-3 ">
+                <a class="card">
+                    <img src="assets/images/us.svg" class="card-img-top" alt="United States of America">
+                    <div class="card-body">
+                        <span class="card-title">United States of America</span>
+                        <ul>
                             <li>
                                 <span class="label">Population:</span>
                                 <span class="value">323,947,000</span>
@@ -104,15 +118,14 @@
                         </ul>
                     </div>
                 </a>
-
-
-                <a class="card-container" href="#">
-                    <img src="assets/images/br.svg">
-                    <div class="description-container">
-                        <div class="country">
-                            <h2>Brazil</h2>
-                        </div>
-                        <ul >
+            </div>
+            <!--  -->
+            <div class="card-container col-12 col-md-6 col-lg-4 col-xxl-3 ">
+                <a class="card">
+                    <img src="assets/images/br.svg" class="card-img-top" alt="Brazil">
+                    <div class="card-body">
+                        <span class="card-title">Brazil</span>
+                        <ul>
                             <li>
                                 <span class="label">Population:</span>
                                 <span class="value">206,135,893</span>
@@ -128,16 +141,14 @@
                         </ul>
                     </div>
                 </a>
-
-
-                <a class="card-container" href="#">
-                    <img src="assets/images/is.svg">
-
-                    <div class="description-container">
-                        <div class="country">
-                            <h2>Iceland</h2>
-                        </div>
-                        <ul >
+            </div>
+            <!--  -->
+            <div class="card-container col-12 col-md-6 col-lg-4 col-xxl-3 ">
+                <a class="card">
+                    <img src="assets/images/is.svg" class="card-img-top" alt="Iceland">
+                    <div class="card-body">
+                        <span class="card-title">Iceland</span>
+                        <ul>
                             <li>
                                 <span class="label">Population:</span>
                                 <span class="value">334,300</span>
@@ -153,16 +164,14 @@
                         </ul>
                     </div>
                 </a>
-
-
-                <a class="card-container" href="#">
-                    <img src="assets/images/af.svg">
-
-                    <div class="description-container">
-                        <div class="country">
-                            <h2>Afghanistan</h2>
-                        </div>
-                        <ul >
+            </div>
+            <!--  -->
+            <div class="card-container col-12 col-md-6 col-lg-4 col-xxl-3 ">
+                <a class="card">
+                    <img src="assets/images/af.svg" class="card-img-top" alt="Afghanistan">
+                    <div class="card-body">
+                        <span class="card-title">Afghanistan</span>
+                        <ul>
                             <li>
                                 <span class="label">Population:</span>
                                 <span class="value">27,657,145</span>
@@ -178,15 +187,14 @@
                         </ul>
                     </div>
                 </a>
-
-                <a class="card-container" href="#">
-                    <img src="assets/images/ax.svg">
-
-                    <div class="description-container">
-                        <div class="country">
-                            <h2>Åland Islands</h2>
-                        </div>
-                        <ul >
+            </div>
+            <!--  -->
+            <div class="card-container col-12 col-md-6 col-lg-4 col-xxl-3 ">
+                <a class="card">
+                    <img src="assets/images/ax.svg" class="card-img-top" alt="Åland Islands">
+                    <div class="card-body">
+                        <span class="card-title">Åland Islands</span>
+                        <ul>
                             <li>
                                 <span class="label">Population:</span>
                                 <span class="value">28,875</span>
@@ -202,16 +210,14 @@
                         </ul>
                     </div>
                 </a>
-
-
-                <a class="card-container" href="#">
-                    <img src="assets/images/al.svg">
-
-                    <div class="description-container">
-                        <div class="country">
-                            <h2>Albania</h2>
-                        </div>
-                        <ul >
+            </div>
+            <!--  -->
+            <div class="card-container col-12 col-md-6 col-lg-4 col-xxl-3 ">
+                <a class="card">
+                    <img src="assets/images/al.svg" class="card-img-top" alt="Albania">
+                    <div class="card-body">
+                        <span class="card-title">Albania</span>
+                        <ul>
                             <li>
                                 <span class="label">Population:</span>
                                 <span class="value">2,886,026</span>
@@ -227,15 +233,14 @@
                         </ul>
                     </div>
                 </a>
-
-                <a class="card-container" href="#">
-                    <img src="assets/images/dz.svg">
-
-                    <div class="description-container">
-                        <div class="country">
-                            <h2>Algeria</h2>
-                        </div>
-                        <ul >
+            </div>
+            <!--  -->
+            <div class="card-container col-12 col-md-6 col-lg-4 col-xxl-3 ">
+                <a class="card">
+                    <img src="assets/images/dz.svg" class="card-img-top" alt="Algeria">
+                    <div class="card-body">
+                        <span class="card-title">Algeria</span>
+                        <ul>
                             <li>
                                 <span class="label">Population:</span>
                                 <span class="value">40,400,000</span>
@@ -251,11 +256,14 @@
                         </ul>
                     </div>
                 </a>
-
             </div>
+            <!--  -->
         </div>
     </div>
+    </div>
 
+    <!-- Cards Container -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>
