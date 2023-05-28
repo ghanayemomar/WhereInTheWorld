@@ -23,24 +23,27 @@ body {
     font-size: clamp(18px, 6vw, 23px);
 }
 
-.dark-mode {
-    font-weight: 300;
-    font-size: 16px;
-
-}
-
 .dark-mode>span {
+    font-weight: 600;
     margin-left: 0.5rem;
 }
 
-.back-btn {
+.custom-back-btn {
+    border-radius: 3px;
     background-color: #ffffff;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width: 145px;
+    height: 40px;
 }
 
-.back-btn span {
-    margin-left: 1rem;
-    font-weight: 600;
+.custom-back-btn:hover {
+    background-color: #ffffff;
+
+
+}
+
+.custom-back-btn span {
+    margin-left: 0.7rem;
+    font-weight: 300;
 }
 
 
@@ -50,7 +53,7 @@ ul {
 }
 
 li {
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }
 
 .title>span {
@@ -65,14 +68,16 @@ li {
 
 .text {
     background-color: #ffffff;
-    border-radius: 5px;
-    margin: 3px;
+    border-radius: 3px;
+    margin: 4px;
     font-size: 16px;
     padding: 1% 5%;
+    box-shadow: rgba(149, 157, 165, 0.2) 8px 8px 24px;
+
 }
 
 .custom-col {
-    margin-left: 4rem;
+    margin-left: 5rem;
 }
 
 .img-fluid {
@@ -80,15 +85,18 @@ li {
     height: 400px;
     object-fit: cover;
 }
-.custom-border{
-    width: 12rem;
+
+.custom-border {
+    width: 11rem;
 }
-.custom-border span{
+
+.custom-border span {
     font-weight: 600;
 }
 
 
-@media (max-width: 750px) {
+
+@media (max-width: 992px) {
     .title {
         font-size: clamp(16px, 4vw, 20px);
     }
@@ -96,19 +104,20 @@ li {
     .dark-mode {
         font-size: clamp(16px, 4vw, 20px);
     }
-  
-
-}
-
-@media (max-width: 992px) {
 
     .img-fluid {
         width: auto;
         height: auto;
         object-fit: cover;
     }
+
     .custom-col {
         margin-left: 0rem;
+    }
+
+    .custom-back-btn {
+        width: 6.8rem;
+        height: 2.5rem;
     }
 
 
