@@ -23,13 +23,8 @@ body {
     font-size: clamp(18px, 6vw, 23px);
 }
 
-.dark-mode {
-    font-weight: 300;
-    font-size: 16px;
-
-}
-
 .dark-mode>span {
+    font-weight: 600;
     margin-left: 0.5rem;
 }
 
@@ -46,15 +41,6 @@ body {
     box-shadow: none;
 }
 
-
-.custom-btn {
-    background-color: #ffffff;
-    border-radius: 5px;
-    border: none !important;
-    box-shadow: none;
-}
-
-/*  */
 .dropdown-container {
     width: 13rem;
     position: relative;
@@ -91,12 +77,6 @@ body {
     z-index: 1;
 }
 
-/*  */
-.custom-btn:active,
-.custom-btn:hover {
-    background-color: #ffffff !important;
-}
-
 ul {
     list-style: none;
 }
@@ -105,7 +85,8 @@ ul {
     width: 175px;
     border: none;
 }
-.card:hover{
+
+.card:hover {
     cursor: pointer;
 }
 
@@ -116,7 +97,7 @@ ul {
 
 .card-title {
     font-weight: 800;
-    font-size: 19px;
+    font-size: 18px;
 }
 
 .card {
@@ -127,16 +108,8 @@ ul {
     height: 380px;
 }
 
-.card-body {
-    padding: 2rem 0rem 2rem 2rem
-}
-
 .card-body>ul {
-    padding: 1rem 0rem 0rem 0rem;
-}
-
-.card-body li {
-    margin-bottom: 5px;
+    padding: 0rem 0rem 0rem 0rem;
 }
 
 .card-body li .label {
@@ -148,6 +121,10 @@ ul {
         margin-right: auto;
         margin-left: auto;
         padding: 0px 60px;
+    }
+
+    .card-title {
+        font-size: 17px;
     }
 
     .title {
