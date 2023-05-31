@@ -28,11 +28,6 @@ body {
     margin-left: 0.5rem;
 }
 
-.input-group {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-
-}
-
 .input-group-text,
 .form-control,
 .form-control:hover {
@@ -41,44 +36,22 @@ body {
     box-shadow: none;
 }
 
-.dropdown-container {
-    width: 13rem;
-    position: relative;
-}
-
-.dropdown-container:hover .dropdown-list {
-    opacity: 1;
-    visibility: visible;
-}
-
-.dropdown-select {
+.dropdown-btn,
+.dropdown-btn:hover,
+.dropdown-btn:focus,
+.dropdown-btn:active {
     background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    padding: 11px 16px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    border-radius: 5px;
-    align-items: center;
-    cursor: pointer;
 }
 
-.dropdown-list {
-    background-color: #ffffff;
-    border-radius: 5px;
-    height: auto;
-    padding: 15px 20px 20px 20px;
-    position: absolute;
-    top: 110%;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s linear, visibility 0.2s linear;
-    z-index: 1;
+.dropdown-item {
+    font-weight: 600;
 }
 
-ul {
-    list-style: none;
+
+.dropdown-menu>li {
+    font-weight: bold;
+    font-size: 14px;
+
 }
 
 .dropdown-menu {
@@ -97,7 +70,7 @@ ul {
 
 .card-title {
     font-weight: 800;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .card {
@@ -109,7 +82,9 @@ ul {
 }
 
 .card-body>ul {
-    padding: 0rem 0rem 0rem 0rem;
+    padding: 0rem;
+    list-style: none;
+
 }
 
 .card-body li .label {
