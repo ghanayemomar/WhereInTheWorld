@@ -1,8 +1,12 @@
 const cardContainer = document.querySelector("#cardContainer");
 const loadingSpinner = document.querySelector("#loadingSpinner");
+const dropdownMenu = document.querySelector(".dropdown-menu");
 
 function toggleLoadingSpinner() {
   loadingSpinner.classList.toggle("d-none");
+}
+function toggleCardContainer() {
+  cardContainer.classList.toggle("d-none");
 }
 
 function renderCards(data) {
@@ -18,8 +22,9 @@ function renderCards(data) {
     const flagSrc = country.flags
       ? country.flags.svg
       : "../assets/images/No_flag.svg";
+    const countryName = encodeURIComponent(country.name.common);
     card.innerHTML = `
-          <a class="card">
+          <a class="card" href="/detail.html?country-name=${countryName}">
             <img src="${flagSrc}" class="card-img-top" alt="${
       country.name.common
     }">
@@ -47,7 +52,8 @@ function renderCards(data) {
 }
 
 function handleFetchError(error) {
-  const errorMessage = "Please try again later.";
+  const errorMessage =
+    "An error occurred while fetching data. Please try again later.";
 
   const errorCard = document.createElement("div");
   errorCard.innerHTML = `
@@ -55,6 +61,7 @@ function handleFetchError(error) {
           ${errorMessage}
         </div>`;
   cardContainer.appendChild(errorCard);
+  console.log(error);
 }
 
 async function fetchData() {
@@ -69,7 +76,7 @@ async function fetchData() {
     handleFetchError(error);
   } finally {
     toggleLoadingSpinner();
+    toggleCardContainer();
   }
 }
-
 fetchData();

@@ -33,22 +33,37 @@
 
     <!-- Button -->
     <div class="container py-5 px-4 px-lg-0">
-        <button type="button" class="custom-back-btn btn shadow">
+        <a href="/" class="custom-back-btn btn shadow">
             <i class="fa-solid fa-arrow-left"><span>Back</span></i>
-        </button>
+        </a>
     </div>
     <!-- End-Button -->
 
+    <!-- loadingSpinner -->
+    <div id="loadingSpinner" class="text-center p-5 d-none">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h1 class="mt-3">Loading please wait...</h1>
+    </div>
+    <!-- End-loadingSpinner -->
+
+    <!-- Error Message -->
+    <div id="errorMsg" class="alert alert-danger h2 text-center d-none">
+        <h1>An error occurred while fetching data. Please try again later.</h1>
+    </div>
+    <!-- End-Error Message -->
+
     <!-- Content -->
     <div class="container px-4 px-lg-0 my-4">
-        <div class="row justify-content-between align-items-center">
+        <div class="row justify-content-between align-items-center d-none" id="contentContainer">
             <div class="col-lg-5 col-12 mb-5">
-                <img class="img-fluid" src="assets/images/bl.svg">
+                <img class="img-fluid" src="" id="flag">
             </div>
             <!--  -->
             <div class="col-lg-6 col-12">
                 <div class="row row-cols-1 title my-3">
-                    <span>Belgium</span>
+                    <span id="countryName"></span>
                 </div>
                 <!--  -->
                 <div class="d-flex justify-content-between flex-column flex-md-row">
@@ -56,23 +71,23 @@
                         <ul>
                             <li>
                                 <span class="label">Native Name:</span>
-                                <span class="value">Belgie</span>
+                                <span class="value" id="nativeName"></span>
                             </li>
                             <li>
                                 <span class="label">Population:</span>
-                                <span class="value">11,319,511</span>
+                                <span class="value" id="population"></span>
                             </li>
                             <li>
                                 <span class="label">Region:</span>
-                                <span class="value">Europe</span>
+                                <span class="value" id="region"></span>
                             </li>
                             <li>
                                 <span class="label">Sub Region:</span>
-                                <span class="value">Western Europe</span>
+                                <span class="value" id="subRegion"></span>
                             </li>
                             <li>
                                 <span class="label">Capital:</span>
-                                <span class="value">Brussels</span>
+                                <span class="value" id="capital"></span>
                             </li>
                         </ul>
                     </div>
@@ -81,15 +96,15 @@
                         <ul>
                             <li>
                                 <span class="label">Top Level Domain:</span>
-                                <span class="value">.be</span>
+                                <span class="value" id="topLevelDomain"></span>
                             </li>
                             <li>
                                 <span class="label">Currencies:</span>
-                                <span class="value">Euro</span>
+                                <span class="value" id="currencies"></span>
                             </li>
                             <li>
                                 <span class="label">Languages:</span>
-                                <span class="value">Dutch, French, German</span>
+                                <span class="value" id="languages"></span>
                             </li>
                         </ul>
                     </div>
@@ -99,10 +114,8 @@
                     <div class="custom-border">
                         <span>Border Countries:</span>
                     </div>
-                    <div class="w-100 d-flex flex-row flex-wrap my-3 my-lg-0 ">
-                        <span class="text">France</span>
-                        <span class="text">Germany</span>
-                        <span class="text">Netherlands</span>
+                    <div class="w-100 d-flex flex-row flex-wrap my-3 my-lg-0 " id="borderContainer">
+                        <span class="text d-none" id="noBorder">No Border For This Country.</span>
                     </div>
                 </div>
             </div>
@@ -110,6 +123,7 @@
         </div>
     </div>
     <!-- End-Content -->
+
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
@@ -120,8 +134,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
         integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
         crossorigin="anonymous"></script>
+    <script src="./javascript/detail.js"></script>
     <!-- End-Script -->
-
 </body>
 
 </html>
