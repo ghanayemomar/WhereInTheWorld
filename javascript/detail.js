@@ -1,4 +1,5 @@
 const params = new URLSearchParams(window.location.search);
+console.log(params);
 if (params.get("country-name") == null || params.get("country-name") === "") {
   window.location.href = "/";
 }
