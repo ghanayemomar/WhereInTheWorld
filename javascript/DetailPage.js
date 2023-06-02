@@ -90,7 +90,7 @@ async function fetchDetail() {
 function init(){
   fetchDetail();
   var link = document.getElementById('back')
-  link.href = (window.location.href).replace('/detail','')
+  link.href = (window.location.href).substring(0,(window.location.href).indexOf('detail.html'))
 }
 
 
