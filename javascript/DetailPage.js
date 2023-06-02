@@ -41,7 +41,10 @@ function handleFetchError(error) {
 async function fetchDetail() {
   try {
     toggleLoadingSpinner();
-    const response = await fetch(`https://restcountries.com/v3.1/name/${urlCountryName}?fields=name,population,region,subregion,tld,borders,currencies,capital,flags,languages`);
+    const countryParam = params.get("country-name");
+    const response = await fetch(
+      `https://restcountries.com/v3.1/name/${countryParam}?fields=name,population,region,subregion,tld,borders,currencies,capital,flags,languages`
+    );
 
     const data = await response.json();
     const country = data[0];
