@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body>
+<body onload="fetchDetail()">
     <!-- NavBar -->
     <nav class="navbar navbar-expand-lg shadow-sm mb-lg-3 mb-0">
         <div class="container justify-content-between py-4">
@@ -33,7 +33,7 @@
 
     <!-- Button -->
     <div class="container py-5 px-4 px-lg-0">
-        <a href="/" class="custom-back-btn btn shadow">
+        <a href="/" id="back" class="custom-back-btn btn shadow">
             <i class="fa-solid fa-arrow-left"><span>Back</span></i>
         </a>
     </div>
