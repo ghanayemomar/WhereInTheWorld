@@ -5,23 +5,42 @@
     font-family: 'Nunito Sans', sans-serif;
 }
 
+:root {
+    --background-color: #fafafa;
+    --elements-color: #ffffff;
+    --text-color: #111517;
+}
+
+.dark-theme {
+    --background-color: #202c37;
+    --elements-color: #2b3945;
+    --text-color: #ffffff;
+}
+
 html {
     font-size: 16px;
 }
 
 body {
     box-sizing: border-box;
-    background-color: #fafafa;
+    background-color: var(--background-color);
+    color: var(--text-color);
+
 }
 
 .navbar {
-    background-color: #ffffff
+    background-color: var(--elements-color)
 }
 
 .title {
     font-weight: 800;
     font-size: clamp(18px, 6vw, 23px);
 }
+
+.dark-mode {
+    color: var(--text-color);
+}
+
 
 .dark-mode>span {
     font-weight: 600;
@@ -30,8 +49,11 @@ body {
 
 .input-group-text,
 .form-control,
-.form-control:hover {
-    background-color: #ffffff;
+.form-control:hover,
+.input-group:placeholder-shown,
+.form-control::placeholder {
+    background-color: var(--elements-color);
+    color: var(--text-color);
     border: none;
     box-shadow: none;
 }
@@ -40,11 +62,14 @@ body {
 .dropdown-btn:hover,
 .dropdown-btn:focus,
 .dropdown-btn:active {
-    background-color: #ffffff;
+    background-color: var(--elements-color);
+    color: var(--text-color);
 }
 
 .dropdown-item {
     font-weight: 600;
+    color: var(--text-color);
+
 }
 
 
@@ -52,11 +77,13 @@ body {
     font-weight: bold;
     font-size: 14px;
 
+
 }
 
 .dropdown-menu {
     width: 175px;
     border: none;
+    background-color: var(--elements-color);
 }
 
 .card:hover {
@@ -75,11 +102,13 @@ body {
 
 .card {
     text-decoration: none;
-    color: black;
+    background-color: var(--elements-color);
+    color: var(--text-color);
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
     border: none;
     height: 380px;
 }
+
 
 .card-body>ul {
     padding: 0rem;

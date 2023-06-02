@@ -1,6 +1,6 @@
 const params = new URLSearchParams(window.location.search);
-console.log(params);
-if (params.get("country-name") == null || params.get("country-name") === "") {
+const urlCountryName = params.get("country-name");
+if (urlCountryName == null || urlCountryName === "") {
   window.location.href = "/";
 }
 
@@ -33,15 +33,16 @@ function toggleErrorMsg() {
   errorMsg.classList.toggle("d-none");
 }
 function handleFetchError(error) {
+  toggleContainerVisibility();
   toggleErrorMsg();
+  console.log(error);
 }
 
 async function fetchDetail() {
   try {
     toggleLoadingSpinner();
-    const countryParam = params.get("country-name");
     const response = await fetch(
-      `https://restcountries.com/v3.1/name/${countryParam}?fields=name,population,region,subregion,tld,borders,currencies,capital,flags,languages`
+      `https://restcountries.com/v3.1/name/${urlCountryName}?fields=name,population,region,subregion,tld,borders,currencies,capital,flags,languages`
     );
 
     const data = await response.json();
@@ -79,7 +80,6 @@ async function fetchDetail() {
     languages.textContent = languageNames;
   } catch (error) {
     handleFetchError(error);
-    toggleContainerVisibility();
   } finally {
     toggleLoadingSpinner();
     toggleContainerVisibility();
