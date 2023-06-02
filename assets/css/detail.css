@@ -5,22 +5,40 @@
     font-family: 'Nunito Sans', sans-serif;
 }
 
+:root {
+    --background-color: #fafafa;
+    --elements-color: #ffffff;
+    --text-color: black;
+}
+
+.dark-theme {
+    --background-color: #202c37;
+    --elements-color: #2b3945;
+    --text-color: #ffffff;
+}
+
+
 html {
     font-size: 16px;
 }
 
 body {
     box-sizing: border-box;
-    background-color: #fafafa;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .navbar {
-    background-color: #ffffff
+    background-color: var(--elements-color);
 }
 
 .title {
     font-weight: 800;
     font-size: clamp(18px, 6vw, 23px);
+}
+
+.dark-mode {
+    color: var(--text-color);
 }
 
 .dark-mode>span {
@@ -30,15 +48,14 @@ body {
 
 .custom-back-btn {
     border-radius: 3px;
-    background-color: #ffffff;
+    background-color: var(--elements-color);
+    color: var(--text-color);
     width: 145px;
     height: 40px;
 }
 
 .custom-back-btn:hover {
-    background-color: #ffffff;
-
-
+    background-color: var(--elements-color);
 }
 
 .custom-back-btn span {
@@ -67,7 +84,8 @@ li {
 }
 
 .text {
-    background-color: #ffffff;
+    background-color: var(--elements-color);
+    color: var(--text-color);
     border-radius: 3px;
     margin: 4px;
     font-size: 16px;
