@@ -91,16 +91,15 @@ async function fetchDetail() {
 }
 
 function init() {
-  const urlCountryName = params.get("country-name");
-  if (urlCountryName == null || urlCountryName === "") {
-    window.location.href = "/";
-  }
-
-  fetchDetail();
-
   var link = document.getElementById("back");
   link.href = window.location.href.substring(
     0,
     window.location.href.indexOf("detail.html")
   );
+  const urlCountryName = params.get("country-name");
+  if (urlCountryName == null || urlCountryName === "") {
+    window.location.href = link;
+  }
+
+  fetchDetail();
 }
