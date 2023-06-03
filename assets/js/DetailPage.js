@@ -96,13 +96,11 @@ function init() {
     0,
     window.location.href.indexOf("detail.html")
   );
-  
+
   const urlCountryName = params.get("country-name");
   if (urlCountryName == null || urlCountryName === "") {
     window.location.href = link.href;
   }
 
   fetchDetail();
-
-
 }
