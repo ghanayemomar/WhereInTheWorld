@@ -11,32 +11,28 @@ const baseURL =
   "https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags";
 
 let selectedRegion = "No Filter";
-
-let countryName = "";
-
 let searchTimer;
 
-function toggleLoadingSpinner() {
+function isLoading() {
   loadingSpinner.classList.toggle("d-none");
-}
-
-function toggleCardContainer() {
-  cardContainer.classList.toggle("d-none");
 }
 
 async function fetchData(url = baseURL) {
   try {
-    toggleLoadingSpinner();
+    isLoading();
     const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("No Data Found");
+    }
     countriesData = await response.json();
     filterByRegion();
   } catch (error) {
     handleFetchError(error);
   } finally {
-    toggleLoadingSpinner();
+    isLoading();
+    cardContainer.classList.remove("d-none");
   }
 }
-toggleCardContainer();
 
 function filterByRegion() {
   filterData = countriesData.filter((country) => {
@@ -50,7 +46,6 @@ function filterByRegion() {
 
 function renderCards(filterData) {
   cardContainer.innerHTML = "";
-
   filterData.forEach((country) => {
     const card = document.createElement("div");
     card.className = "card-container col-12 col-md-6 col-lg-4 col-xxl-3";
@@ -83,8 +78,14 @@ function renderCards(filterData) {
 }
 
 function handleFetchError(error) {
-  const errorMessage =
-    "An error occurred while fetching data. Please try again later.";
+  cardContainer.innerHTML = "";
+  var errorMessage;
+  if (error.message === "No Data Found") {
+    errorMessage = "No Countries Found, Please Enter Valid Country Name.";
+  } else {
+    errorMessage =
+      "An error occurred while fetching data. Please try again later.";
+  }
 
   const errorCard = document.createElement("div");
   errorCard.innerHTML = `

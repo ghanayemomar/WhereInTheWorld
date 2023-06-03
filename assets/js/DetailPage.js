@@ -12,6 +12,7 @@ const languages = document.getElementById("languages");
 const borderContainer = document.getElementById("borderContainer");
 const noBorder = document.getElementById("noBorder");
 const contentContainer = document.getElementById("contentContainer");
+const errorMessage = document.getElementById("errorMessage");
 
 function toggleNoBorderCountries() {
   noBorder.classList.toggle("d-none");
@@ -30,6 +31,12 @@ function toggleErrorMsg() {
 }
 
 function handleFetchError(error) {
+  if ((error.message = "Cannot read properties of undefined")) {
+    errorMessage.textContent = "No Detail Found For This Country.";
+  } else {
+    errorMessage.textContent =
+      "An error occurred while fetching data. Please try again later.";
+  }
   toggleContainerVisibility();
   toggleErrorMsg();
   console.log(error);
@@ -42,7 +49,6 @@ async function fetchDetail() {
     const response = await fetch(
       `https://restcountries.com/v3.1/name/${countryParam}?fields=name,population,region,subregion,tld,borders,currencies,capital,flags,languages`
     );
-
     const data = await response.json();
     const country = data[0];
 
