@@ -22,6 +22,7 @@ async function fetchData(url = baseURL) {
     isLoading();
     const response = await fetch(url);
     if (!response.ok) {
+      countriesData=[];
       throw new Error("No Data Found");
     }
     countriesData = await response.json();
@@ -60,15 +61,23 @@ function renderCards(filterData) {
       <ul>
         <li>
           <span class="label">Population:</span>
-          <span class="value">${country.population.toLocaleString()}</span>
+          <span class="value">${
+            country.population == null
+              ? "No Data Found"
+              : country.population.toLocaleString()
+          }</span>
         </li>
         <li>
           <span class="label">Region:</span>
-          <span class="value">${country.region}</span>
+          <span class="value">${
+            country.region == "" ? "No Data Found" : country.region
+          }</span>
         </li>
         <li>
           <span class="label">Capital:</span>
-          <span class="value">${country.capital}</span>
+          <span class="value">${
+            country.capital == "" ? "No Data Found" : country.capital
+          }</span>
         </li>
       </ul>
     </div>
