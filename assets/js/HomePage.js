@@ -4,9 +4,17 @@ const dropdownMenu = document.getElementById("dropdownMenu");
 const dropdownButton = document.getElementById("dropdownButton");
 const dropdownItems = dropdownMenu.querySelectorAll(".dropdown-item");
 const searchInput = document.getElementById("input");
-let data = [];
-const base ="https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags"
-let selectedRegion = "No Filter"
+
+let countriesData = [];
+
+const baseURL =
+  "https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags";
+
+let selectedRegion = "No Filter";
+
+let countryName = "";
+
+let searchTimer;
 
 function toggleLoadingSpinner() {
   loadingSpinner.classList.toggle("d-none");
@@ -16,30 +24,28 @@ function toggleCardContainer() {
   cardContainer.classList.toggle("d-none");
 }
 
-
-async function fetchData(url=base) {
+async function fetchData(url = baseURL) {
   try {
     toggleLoadingSpinner();
     const response = await fetch(url);
-    data = await response.json();
-    filterData_w()
+    countriesData = await response.json();
+    filterByRegion();
   } catch (error) {
     handleFetchError(error);
   } finally {
     toggleLoadingSpinner();
   }
 }
-
 toggleCardContainer();
 
-function filterData_w (){
-  filter = data.filter((country) => {
+function filterByRegion() {
+  filterData = countriesData.filter((country) => {
     if (selectedRegion !== "No Filter") {
       return country.region === selectedRegion;
     }
     return true;
   });
-  return renderCards(filter)
+  return renderCards(filterData);
 }
 
 function renderCards(filterData) {
@@ -72,7 +78,6 @@ function renderCards(filterData) {
       </ul>
     </div>
   </a>`;
-
     cardContainer.appendChild(card);
   });
 }
@@ -90,29 +95,19 @@ function handleFetchError(error) {
   console.log(error);
 }
 
-let countryName = "";
-searchInput.addEventListener("keyup", handleSearch);
-let searchTimer;
-
 function handleSearch(event) {
   clearTimeout(searchTimer);
   searchTimer = setTimeout(() => {
-    const searchQuery = event.target.value.trim();
-
-    searchQuery === "" || null
+    const searchResult = event.target.value.trim();
+    searchResult === "" || null
       ? fetchData()
-      : ((countryName = searchQuery), fetchData(base.replace("all",`name/${countryName.toLowerCase()}`)));
+      : fetchData(baseURL.replace("all", `name/${searchResult}`));
   }, 500);
 }
 
-
-
-
-
 function handleRegionFilter(event) {
   selectedRegion = event.target.innerText;
-  filterData_w();
-
+  filterByRegion();
   if (selectedRegion === "No Filter") {
     dropdownButton.innerText = "Filter by region";
   } else {
@@ -120,8 +115,10 @@ function handleRegionFilter(event) {
   }
 }
 
-dropdownItems.forEach((item) => {
-  item.addEventListener("click", handleRegionFilter);
-});
-
-fetchData();
+function init() {
+  fetchData();
+  searchInput.addEventListener("keyup", handleSearch); //registration event lisner
+  dropdownItems.forEach((item) => {
+    item.addEventListener("click", handleRegionFilter);
+  });
+}

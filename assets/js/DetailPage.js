@@ -1,9 +1,4 @@
 const params = new URLSearchParams(window.location.search);
-const urlCountryName = params.get("country-name");
-if (urlCountryName == null || urlCountryName === "") {
-  window.location.href = "/";
-}
-
 const flag = document.getElementById("flag");
 const countryName = document.getElementById("countryName");
 const nativeName = document.getElementById("nativeName");
@@ -29,9 +24,11 @@ function toggleContainerVisibility() {
 function toggleLoadingSpinner() {
   loadingSpinner.classList.toggle("d-none");
 }
+
 function toggleErrorMsg() {
   errorMsg.classList.toggle("d-none");
 }
+
 function handleFetchError(error) {
   toggleContainerVisibility();
   toggleErrorMsg();
@@ -87,11 +84,17 @@ async function fetchDetail() {
   }
 }
 
-function init(){
+function init() {
+  const urlCountryName = params.get("country-name");
+  if (urlCountryName == null || urlCountryName === "") {
+    window.location.href = "/";
+  }
+
   fetchDetail();
-  var link = document.getElementById('back')
-  link.href = (window.location.href).substring(0,(window.location.href).indexOf('detail.html'))
+
+  var link = document.getElementById("back");
+  link.href = window.location.href.substring(
+    0,
+    window.location.href.indexOf("detail.html")
+  );
 }
-
-
-
