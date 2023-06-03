@@ -5,6 +5,8 @@ const dropdownButton = document.getElementById("dropdownButton");
 const dropdownItems = dropdownMenu.querySelectorAll(".dropdown-item");
 const searchInput = document.getElementById("input");
 
+const root = document.getElementById("root");
+
 let countriesData = [];
 
 const baseURL =
