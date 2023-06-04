@@ -35,10 +35,13 @@ body {
 .title {
     font-weight: 800;
     font-size: clamp(18px, 6vw, 23px);
+    animation: moveInLeft 0.5s ease-in-out;
 }
 
 .dark-mode {
     color: var(--text-color);
+    animation: moveInRight 0.5s ease-in-out;
+
 }
 
 
@@ -51,11 +54,12 @@ body {
 .form-control,
 .form-control:hover,
 .input-group:placeholder-shown,
-.form-control::placeholder{
+.form-control::placeholder {
     background-color: var(--elements-color);
     color: var(--text-color);
     border: none;
     box-shadow: none;
+
 }
 
 .dropdown-btn,
@@ -73,6 +77,7 @@ body {
 .dropdown-item {
     font-weight: 600;
     color: var(--text-color);
+
 
 }
 
@@ -111,6 +116,13 @@ body {
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
     border: none;
     height: 380px;
+    transition: transform 0.3s ease-out;
+    animation: moveInOut 0.5s ease-in-out;
+
+}
+
+.card:hover {
+    transform: scale(1.10);
 }
 
 
@@ -122,6 +134,54 @@ body {
 
 .card-body li .label {
     font-weight: 600;
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-5rem);
+    }
+
+    80% {
+        transform: translateX(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(5rem);
+    }
+
+    80% {
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes moveInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+
+    80% {
+        transform: translateY(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
 
 @media (max-width: 750px) {

@@ -15,6 +15,7 @@ const contentContainer = document.getElementById("contentContainer");
 const errorMessage = document.getElementById("errorMessage");
 const root = document.getElementById("root");
 const loadingSpinner = document.getElementById("loadingSpinner");
+
 var backButton = document.getElementById("back");
 var urlCountryName;
 function toggleContainerVisibility() {
