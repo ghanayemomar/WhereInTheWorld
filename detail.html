@@ -29,7 +29,6 @@
             </button>
         </div>
     </nav>
-    <!-- End-NavBar -->
 
     <!-- Button -->
     <div class="container py-5 px-4 px-lg-0">
@@ -37,7 +36,6 @@
             <i class="fa-solid fa-arrow-left"><span>Back</span></i>
         </a>
     </div>
-    <!-- End-Button -->
 
     <!-- loadingSpinner -->
     <div id="loadingSpinner" class="text-center p-5 d-none">
@@ -46,17 +44,10 @@
         </div>
         <h1 class="mt-3">Loading please wait...</h1>
     </div>
-    <!-- End-loadingSpinner -->
-
-    <!-- Error Message -->
-    <div id="errorMsg" class="container-fluid alert alert-danger h2 text-center d-none">
-        <h2 id="errorMessage"></h2>
-    </div>
-    <!-- End-Error Message -->
 
     <!-- Content -->
-    <div class="container px-4 px-lg-0 my-4">
-        <div class="row justify-content-between align-items-center d-none" id="contentContainer">
+    <div class="container px-4 px-lg-0 my-4 d-none" id="contentContainer">
+        <div class="row justify-content-between align-items-center">
             <div class="col-lg-5 col-12 mb-5">
                 <img class="img-fluid" src="" id="flag">
             </div>
@@ -109,13 +100,12 @@
                         </ul>
                     </div>
                 </div>
-                <!--  -->
+                <!-- border -->
                 <div class="w-100 my-4 my-lg-5 d-flex flex-column flex-lg-row align-items-lg-center align-items-start">
                     <div class="custom-border">
                         <span>Border Countries:</span>
                     </div>
                     <div class="w-100 d-flex flex-row flex-wrap my-3 my-lg-0 " id="borderContainer">
-                        <span class="text d-none" id="noBorder">No Border For This Country.</span>
                     </div>
                 </div>
             </div>
@@ -134,8 +124,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
         integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
         crossorigin="anonymous"></script>
-        <script src="./assets/js/DetailPage.js"></script>
-        <script src="./assets/js/DarkMode.js"></script>
+    <script src="./assets/js/DetailPage.js"></script>
+    <script src="./assets/js/DarkMode.js"></script>
     <!-- End-Script -->
 </body>
 

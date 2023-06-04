@@ -13,11 +13,10 @@ const borderContainer = document.getElementById("borderContainer");
 const noBorder = document.getElementById("noBorder");
 const contentContainer = document.getElementById("contentContainer");
 const errorMessage = document.getElementById("errorMessage");
-
-function toggleNoBorderCountries() {
-  noBorder.classList.toggle("d-none");
-}
-
+const root = document.getElementById("root");
+const loadingSpinner = document.getElementById("loadingSpinner");
+var backButton = document.getElementById("back");
+var urlCountryName;
 function toggleContainerVisibility() {
   contentContainer.classList.toggle("d-none");
 }
@@ -26,34 +25,33 @@ function toggleLoadingSpinner() {
   loadingSpinner.classList.toggle("d-none");
 }
 
-function toggleErrorMsg() {
-  errorMsg.classList.toggle("d-none");
-}
-
-function handleFetchError(error) {
-  if ((error.message = "Cannot read properties of undefined")) {
-    errorMessage.textContent = "No Detail Found For This Country.";
-  } else {
-    errorMessage.textContent =
-      "An error occurred while fetching data. Please try again later.";
+function init() {
+  backButton.href = window.location.href.substring(
+    0,
+    window.location.href.indexOf("detail.html")
+  );
+  urlCountryName = params.get("country-name");
+  if (urlCountryName == null || urlCountryName === "") {
+    window.location.href = backButton.href;
   }
-  toggleContainerVisibility();
-  toggleErrorMsg();
-  console.log(error);
+  fetchDetail();
 }
 
 async function fetchDetail() {
   try {
     toggleLoadingSpinner();
-    const countryParam = params.get("country-name");
     const response = await fetch(
-      `https://restcountries.com/v3.1/name/${countryParam}?fields=name,population,region,subregion,tld,borders,currencies,capital,flags,languages`
+      `https://restcountries.com/v3.1/name/${urlCountryName}?fields=name,population,region,subregion,tld,borders,currencies,capital,flags,languages`
     );
+    if (!response.ok) {
+      throw new Error();
+    }
     const data = await response.json();
     const country = data[0];
 
     if (!country) {
-      window.location.href = "/";
+      window.location.href = backButton.href;
+      return;
     }
 
     const flagSrc = country.flags
@@ -62,7 +60,7 @@ async function fetchDetail() {
     const languageNames = Object.values(data[0].languages).join(", ");
     const borders = Object.values(data[0].borders);
     borders.length === 0
-      ? toggleNoBorderCountries()
+      ? (borderContainer.innerHTML = `<div class="text">No Border For This Country.</div>`)
       : borders.forEach((border) => {
           const borderCode = document.createElement("span");
           borderCode.classList.add("text");
@@ -78,7 +76,7 @@ async function fetchDetail() {
     subRegion.textContent = country.subregion;
     capital.textContent = country.capital;
     region.textContent = country.region;
-    topLevelDomain.textContent = country.tld;
+    topLevelDomain.textContent = country.tld.join(", ");
     currencies.textContent =
       country.currencies[Object.keys(country.currencies)[0]].name;
     languages.textContent = languageNames;
@@ -90,17 +88,19 @@ async function fetchDetail() {
   }
 }
 
-function init() {
-  var link = document.getElementById("back");
-  link.href = window.location.href.substring(
-    0,
-    window.location.href.indexOf("detail.html")
-  );
-
-  const urlCountryName = params.get("country-name");
-  if (urlCountryName == null || urlCountryName === "") {
-    window.location.href = link.href;
+function handleFetchError(error) {
+  contentContainer.innerHTML = ``;
+  var errorMessage;
+  if (error.message === "Failed to fetch") {
+    errorMessage =
+      "An error occurred while fetching data. Please try again later.";
+  } else {
+    errorMessage = "No data found for this country.";
   }
-
-  fetchDetail();
+  const errorCard = document.createElement("div");
+  errorCard.innerHTML = `
+    <div class="alert h2 text-center" role="alert">
+      ${errorMessage}
+    </div>`;
+  contentContainer.appendChild(errorCard);
 }

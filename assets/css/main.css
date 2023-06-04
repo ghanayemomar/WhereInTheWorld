@@ -51,7 +51,7 @@ body {
 .form-control,
 .form-control:hover,
 .input-group:placeholder-shown,
-.form-control::placeholder {
+.form-control::placeholder{
     background-color: var(--elements-color);
     color: var(--text-color);
     border: none;
@@ -64,6 +64,10 @@ body {
 .dropdown-btn:active {
     background-color: var(--elements-color);
     color: var(--text-color);
+    border: none;
+    width: 190px;
+    display: flex;
+    align-items: center;
 }
 
 .dropdown-item {

@@ -5,8 +5,6 @@ const dropdownButton = document.getElementById("dropdownButton");
 const dropdownItems = dropdownMenu.querySelectorAll(".dropdown-item");
 const searchInput = document.getElementById("input");
 
-const root = document.getElementById("root");
-
 let countriesData = [];
 
 const baseURL =
@@ -19,12 +17,35 @@ function isLoading() {
   loadingSpinner.classList.toggle("d-none");
 }
 
+function saveSelectedRegionToLocalStorage() {
+  localStorage.setItem("selectedRegion", selectedRegion);
+}
+
+function retrieveSelectedRegionFromLocalStorage() {
+  const region = localStorage.getItem("selectedRegion");
+  if (region) {
+    selectedRegion = region;
+    filterByRegion();
+    dropdownButton.innerText =
+      selectedRegion === "No Filter" ? "Filter by region" : selectedRegion;
+  }
+}
+
+function init() {
+  retrieveSelectedRegionFromLocalStorage();
+  fetchData();
+  searchInput.addEventListener("keyup", handleSearch); //registration event lisner
+  dropdownItems.forEach((item) => {
+    item.addEventListener("click", handleRegionFilter);
+  });
+}
+
 async function fetchData(url = baseURL) {
   try {
     isLoading();
     const response = await fetch(url);
     if (!response.ok) {
-      countriesData=[];
+      countriesData = [];
       throw new Error("No Data Found");
     }
     countriesData = await response.json();
@@ -38,22 +59,24 @@ async function fetchData(url = baseURL) {
 }
 
 function filterByRegion() {
-  filterData = countriesData.filter((country) => {
+  filteredData = countriesData.filter((country) => {
     if (selectedRegion !== "No Filter") {
       return country.region === selectedRegion;
     }
     return true;
   });
-  return renderCards(filterData);
+  return renderCards(filteredData);
 }
 
-function renderCards(filterData) {
+function renderCards(filteredData) {
   cardContainer.innerHTML = "";
-  filterData.forEach((country) => {
-    const card = document.createElement("div");
-    card.className = "card-container col-12 col-md-6 col-lg-4 col-xxl-3";
-    const countryName = encodeURIComponent(country.name.common);
-    card.innerHTML = `
+  filteredData.length === 0
+    ? (cardContainer.innerHTML = `<h2 class="text-center">No result Found.</h2>`)
+    : filteredData.forEach((country) => {
+        const card = document.createElement("div");
+        card.className = "card-container col-12 col-md-6 col-lg-4 col-xxl-3";
+        const countryName = encodeURIComponent(country.name.common);
+        card.innerHTML = `
     <a class="card" href="detail.html?country-name=${countryName}">
     <img src="${
       country.flags ? country.flags.svg : "../assets/images/No_flag.svg"
@@ -84,15 +107,15 @@ function renderCards(filterData) {
       </ul>
     </div>
   </a>`;
-    cardContainer.appendChild(card);
-  });
+        cardContainer.appendChild(card);
+      });
 }
 
 function handleFetchError(error) {
   cardContainer.innerHTML = "";
   var errorMessage;
   if (error.message === "No Data Found") {
-    errorMessage = "No Countries Found, Please Enter Valid Country Name.";
+    errorMessage = "No Result Found, Please Enter Valid Country Name.";
   } else {
     errorMessage =
       "An error occurred while fetching data. Please try again later.";
@@ -100,11 +123,10 @@ function handleFetchError(error) {
 
   const errorCard = document.createElement("div");
   errorCard.innerHTML = `
-    <div class="alert alert-danger h2 text-center" role="alert">
+    <div class="alert h2 text-center" role="alert">
       ${errorMessage}
     </div>`;
   cardContainer.appendChild(errorCard);
-  console.log(error);
 }
 
 function handleSearch(event) {
@@ -119,18 +141,11 @@ function handleSearch(event) {
 
 function handleRegionFilter(event) {
   selectedRegion = event.target.innerText;
+  saveSelectedRegionToLocalStorage();
   filterByRegion();
   if (selectedRegion === "No Filter") {
     dropdownButton.innerText = "Filter by region";
   } else {
     dropdownButton.innerText = selectedRegion;
   }
-}
-
-function init() {
-  fetchData();
-  searchInput.addEventListener("keyup", handleSearch); //registration event lisner
-  dropdownItems.forEach((item) => {
-    item.addEventListener("click", handleRegionFilter);
-  });
 }
