@@ -5,11 +5,10 @@ const dropdownButton = document.getElementById("dropdownButton");
 const dropdownItems = dropdownMenu.querySelectorAll(".dropdown-item");
 const searchInput = document.getElementById("input");
 
-let countriesData = [];
-
 const baseURL =
   "https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags";
 
+let countriesData = [];
 let selectedRegion = "No Filter";
 let searchTimer;
 
@@ -17,22 +16,7 @@ function isLoading() {
   loadingSpinner.classList.toggle("d-none");
 }
 
-function saveSelectedRegionToLocalStorage() {
-  localStorage.setItem("selectedRegion", selectedRegion);
-}
-
-function retrieveSelectedRegionFromLocalStorage() {
-  const region = localStorage.getItem("selectedRegion");
-  if (region) {
-    selectedRegion = region;
-    filterByRegion();
-    dropdownButton.innerText =
-      selectedRegion === "No Filter" ? "Filter by region" : selectedRegion;
-  }
-}
-
 function init() {
-  retrieveSelectedRegionFromLocalStorage();
   fetchData();
   searchInput.addEventListener("keyup", handleSearch); //registration event lisner
   dropdownItems.forEach((item) => {
@@ -141,7 +125,7 @@ function handleSearch(event) {
 
 function handleRegionFilter(event) {
   selectedRegion = event.target.innerText;
-  saveSelectedRegionToLocalStorage();
+  // saveSelectedRegionToLocalStorage();
   filterByRegion();
   if (selectedRegion === "No Filter") {
     dropdownButton.innerText = "Filter by region";
