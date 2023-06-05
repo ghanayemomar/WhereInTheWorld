@@ -115,7 +115,7 @@ function handleFetchError(error) {
   cardContainer.innerHTML = "";
   var errorMessage;
   if (error.message === "No Data Found") {
-    errorMessage = "No Result Found, Please Enter Valid Country Name.";
+    errorMessage = "No result Found, Please Enter Valid Country Name.";
   } else {
     errorMessage =
       "An error occurred while fetching data. Please try again later.";
