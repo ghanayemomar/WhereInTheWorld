@@ -13,6 +13,7 @@ let selectedRegion = "No Filter";
 let searchTimer;
 
 function isLoading() {
+  cardContainer.classList.add("d-none");
   loadingSpinner.classList.toggle("d-none");
 }
 
