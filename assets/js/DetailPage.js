@@ -49,11 +49,20 @@ async function fetchDetail() {
     const detailData = await response.json();
     const country = detailData[0];
 
+    let countryFullName = [];
+    const borders = Object.values(country.borders).join(",");
+    if (borders) {
+      const bordersResponse = await fetch(
+        `https://restcountries.com/v3.1/alpha?codes=${borders}`
+      );
+      const bordersData = await bordersResponse.json();
+      countryFullName = bordersData.map((country) => country.name.common);
+    }
     if (!country) {
       window.location.href = backButton.href;
       return;
     }
-    renderDetails(country);
+    renderDetails(country, countryFullName);
   } catch (error) {
     console.log(error);
     handleFetchError(error);
@@ -63,15 +72,14 @@ async function fetchDetail() {
   }
 }
 
-function renderDetails(country) {
+function renderDetails(country, countryFullName) {
   const flagSrc = country.flags
     ? country.flags.svg
     : "../assets/images/No_flag.svg";
   const languageNames = Object.values(country.languages).join(", ");
-  const borders = Object.values(country.borders);
-  borders.length === 0
+  countryFullName.length === 0
     ? (borderContainer.innerHTML = `<div class="text">No Border For This Country.</div>`)
-    : borders.forEach((border) => {
+    : countryFullName.forEach((border) => {
         const borderCode = document.createElement("span");
         borderCode.classList.add("text");
         borderCode.textContent = border;
