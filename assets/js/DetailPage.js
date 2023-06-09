@@ -25,17 +25,15 @@ function toggleLoadingSpinner() {
   loadingSpinner.classList.toggle("d-none");
 }
 
-function init() {
-  backButton.href = window.location.href.substring(
-    0,
-    window.location.href.indexOf("detail.html")
-  );
-  urlCountryName = params.get("country-name");
-  if (urlCountryName == null || urlCountryName === "") {
-    window.location.href = backButton.href;
-  }
-  fetchDetail();
+backButton.href = window.location.href.substring(
+  0,
+  window.location.href.indexOf("detail.html")
+);
+urlCountryName = params.get("country-name");
+if (urlCountryName == null || urlCountryName === "") {
+  window.location.href = backButton.href;
 }
+fetchDetail();
 
 async function fetchDetail() {
   try {

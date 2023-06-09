@@ -17,13 +17,11 @@ function isLoading() {
   loadingSpinner.classList.toggle("d-none");
 }
 
-function init() {
   fetchData();
   searchInput.addEventListener("keyup", handleSearch); //registration event lisner
   dropdownItems.forEach((item) => {
     item.addEventListener("click", handleRegionFilter);
   });
-}
 
 async function fetchData(url = baseURL) {
   try {
@@ -36,6 +34,7 @@ async function fetchData(url = baseURL) {
     countriesData = await response.json();
     filterByRegion();
   } catch (error) {
+    console.log(error)
     handleFetchError(error);
   } finally {
     isLoading();
@@ -44,7 +43,7 @@ async function fetchData(url = baseURL) {
 }
 
 function filterByRegion() {
-  filteredData = countriesData.filter((country) => {
+ var filteredData = countriesData.filter((country) => {
     if (selectedRegion !== "No Filter") {
       return country.region === selectedRegion;
     }
