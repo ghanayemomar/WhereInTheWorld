@@ -1,0 +1,23 @@
+export const cardContainer = document.getElementById("cardContainer");
+export const dropdownMenu = document.getElementById("dropdownMenu");
+export const dropdownButton = document.getElementById("dropdownButton");
+export const searchInput = document.getElementById("input");
+
+export const params = new URLSearchParams(window.location.search);
+export const flag = document.getElementById("flag");
+export const countryName = document.getElementById("countryName");
+export const nativeName = document.getElementById("nativeName");
+export const population = document.getElementById("population");
+export const region = document.getElementById("region");
+export const subRegion = document.getElementById("subRegion");
+export const capital = document.getElementById("capital");
+export const topLevelDomain = document.getElementById("topLevelDomain");
+export const currencies = document.getElementById("currencies");
+export const languages = document.getElementById("languages");
+export const borderContainer = document.getElementById("borderContainer");
+export const noBorder = document.getElementById("noBorder");
+export const contentContainer = document.getElementById("contentContainer");
+export const errorMessage = document.getElementById("errorMessage");
+export const root = document.getElementById("root");
+export const loadingSpinner = document.getElementById("loadingSpinner");
+export const backButton = document.getElementById("back");
