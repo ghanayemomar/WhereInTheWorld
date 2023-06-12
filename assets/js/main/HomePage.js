@@ -1,9 +1,13 @@
 export const dropdownItems = dropdownMenu.querySelectorAll(".dropdown-item");
 
-import { cardContainer, dropdownButton, searchInput } from "../Variables.js";
+import {
+  cardContainer,
+  dropdownButton,
+  searchInput,
+} from "../constants/Variables.js";
 
-import { isLoading, handleFetchError } from "../HelperFunctions.js";
-import { renderCards } from "../RenderFunctions.js";
+import { isLoading, handleFetchError } from "../helper/HelperFunctions.js";
+import { renderCards } from "../component/RednerCards.js";
 
 const baseURL =
   "https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags";
@@ -12,7 +16,7 @@ let selectedRegion = "No Filter";
 let searchTimer;
 
 fetchData();
-searchInput.addEventListener("keyup", handleSearch); 
+searchInput.addEventListener("keyup", handleSearch);
 dropdownItems.forEach((item) => {
   item.addEventListener("click", handleRegionFilter);
 });
