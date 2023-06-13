@@ -5,6 +5,7 @@ const dropdownButton = document.getElementById("dropdownButton");
 const dropdownItems = dropdownMenu.querySelectorAll(".dropdown-item");
 const searchInput = document.getElementById("input");
 let searchTimer;
+let selectedRegion = "No Filter";
 
 function isLoading() {
   cardContainer.classList.add("d-none");
@@ -17,12 +18,14 @@ async function fetchData(
   url = "https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags"
 ) {
   let countriesData = [];
+
   dropdownItems.forEach((item) => {
     item.addEventListener("click", (event) => {
-      handleRegionFilter(event, countriesData); // Pass countriesData to event listener
+      handleRegionFilter(event, countriesData);
     });
   });
-  searchInput.addEventListener("keyup", handleSearch); //registration event lisner
+
+  searchInput.addEventListener("keyup", handleSearch);
 
   try {
     isLoading();
@@ -32,7 +35,7 @@ async function fetchData(
       throw new Error("No Data Found");
     }
     countriesData = await response.json();
-    filterByRegion(countriesData);
+    filterByRegion(countriesData, selectedRegion);
   } catch (error) {
     console.log(error);
     handleFetchError(error);
@@ -42,7 +45,7 @@ async function fetchData(
   }
 }
 
-function filterByRegion(countriesData, selectedRegion = "No Filter") {
+function filterByRegion(countriesData, selectedRegion) {
   var filteredData = countriesData.filter((country) => {
     if (selectedRegion !== "No Filter") {
       return country.region === selectedRegion;
@@ -108,7 +111,9 @@ function handleSearch(event) {
 }
 
 function handleRegionFilter(event, countriesData) {
-  let selectedRegion = event.target.innerText;
+  selectedRegion = event.target.innerText;
+  // Save the selected region to localStorage
+  localStorage.setItem("selectedRegion", selectedRegion);
   filterByRegion(countriesData, selectedRegion);
   if (selectedRegion === "No Filter") {
     dropdownButton.innerText = "Filter by region";
