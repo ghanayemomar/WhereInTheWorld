@@ -184,7 +184,99 @@ body {
     }
 }
 
-@media (max-width: 750px) {
+/* .fa-star {
+    display: none;
+} */
+
+.fa-star {
+    display: none;
+}
+
+.favourites-container {
+    background-color: var(--elements-color);
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    height: 810px;
+    border-radius: 5px;
+    overflow: hidden;
+
+}
+
+/* 
+.fav-country {
+    overflow-y: scroll;
+    height: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: #888888 #F0F0F0;
+}
+
+.fav-country::-webkit-scrollbar {
+    width: 8px;
+}
+
+.fav-country::-webkit-scrollbar-thumb {
+    background-color: #888888;
+    padding: 2rem;
+    max-height: 10px;
+    /* Adjust the height as needed */
+/* border-radius: 20px; */
+/* Adjust the border radius to make it round */
+/* } */
+
+/* .fav-country::-webkit-scrollbar-track {
+    background-color: #F0F0F0;
+}  */
+
+.fav-text {
+    margin: 1.1rem;
+}
+
+.fav-text>span {
+    font-weight: 800;
+    font-size: 20px;
+    margin-top: 2rem;
+}
+
+.fav-country>ul {
+    list-style: none;
+    padding: 0rem 1rem;
+}
+
+.fav-country li {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fav-country i {
+    cursor: pointer;
+}
+
+.fav-country-img-name>img {
+    width: 40px;
+    border-radius: 5px;
+}
+
+.fav-country-img-name>span {
+    margin-left: 0.5rem;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.fa-star {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    padding: 1rem;
+    color: var(--text-color);
+    border: none;
+}
+
+
+
+@media (max-width: 768px) {
     .card-container {
         margin-right: auto;
         margin-left: auto;
@@ -202,5 +294,14 @@ body {
     .dark-mode {
         font-size: clamp(16px, 4vw, 20px);
     }
+
+
+
+    .favourites-container {
+        display: none;
+    }
+
+
+
 
 }

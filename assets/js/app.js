@@ -1,3 +1,4 @@
+// check if pure functuin or NOT
 var icon = document.getElementById("icon");
 icon.onclick = () => {
   document.body.classList.toggle("dark-theme");
