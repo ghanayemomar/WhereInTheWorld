@@ -264,14 +264,12 @@ body {
     font-size: 14px;
 }
 
-.fa-star {
-    display: inline-block;
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    padding: 1rem;
-    color: var(--text-color);
-    border: none;
+
+.dragging{
+    opacity: .5;
+}
+.favourites-container.highlight{
+    border: 1px solid #27ae60;
 }
 
 
@@ -300,7 +298,17 @@ body {
     .favourites-container {
         display: none;
     }
-
+    
+    .fa-star {
+        display: inline-block;
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        padding: 1rem;
+        color: var(--text-color);
+        border: none;
+        
+    }
 
 
 
