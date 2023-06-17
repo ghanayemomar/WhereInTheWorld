@@ -1,7 +1,7 @@
-import { handleFetchError } from "./controllers/ErrorHandler.js";
-import { isLoading } from "./controllers/LoadingSpinner.js";
-import { fetchData } from "./controllers/FetchModule.js";
-import { updateStarIcon } from "./controllers/HomePageControllers/updateStarIcon.js";
+// import { handleFetchError } from "./controllers/ErrorHandler.js";
+// import { isLoading } from "./controllers/LoadingSpinner.js";
+// import { fetchData } from "./controllers/FetchModule.js";
+// import { updateStarIcon } from "./controllers/HomePageControllers/updateStarIcon.js";
 
 const cardContainer = document.getElementById("cardContainer");
 const loadingSpinner = document.getElementById("loadingSpinner");
@@ -33,6 +33,7 @@ async function handleData(
     var filteredCountries = filterByRegion(countriesData, selectedRegion);
     renderCards(filteredCountries);
   } catch (error) {
+    console.log(error);
     cardContainer.innerHTML = "";
     cardContainer.appendChild(handleFetchError(error));
   } finally {
@@ -41,6 +42,43 @@ async function handleData(
   }
 }
 
+
+export function updateStarIcon(starIcon, isFavorite) {
+  starIcon.classList.toggle("fa-solid", isFavorite);
+  starIcon.classList.toggle("fa-regular", !isFavorite);
+}
+export function handleFetchError(error) {
+  var errorMessage;
+  if (error.message === "No Data Found") {
+    errorMessage = "No result Found, Please Enter Valid Country Name.";
+  } else {
+    errorMessage =
+      "An error occurred while fetching data. Please try again later.";
+  }
+
+  const errorCard = document.createElement("div");
+  errorCard.innerHTML = `
+        <div class="alert h2 text-center" role="alert">
+          ${errorMessage}
+        </div>`;
+  return errorCard;
+}
+export async function fetchData(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
+}
+export function isLoading(cardContainer, loadingSpinner) {
+  const updatedCardContainer = cardContainer.classList.add("d-none");
+  const updatedLoadingSpinner = loadingSpinner.classList.toggle("d-none");
+
+  return {
+    cardContainer: updatedCardContainer,
+    loadingSpinner: updatedLoadingSpinner,
+  };
+}
 handleData();
 initializeFavoriteList();
 
