@@ -1,16 +1,22 @@
-// import { handleFetchError } from "./controllers/ErrorHandler.js";
-// import { isLoading } from "./controllers/LoadingSpinner.js";
-// import { fetchData } from "./controllers/FetchModule.js";
-// import { updateStarIcon } from "./controllers/HomePageControllers/updateStarIcon.js";
+import { handleFetchError } from "./controllers/ErrorHandler.js";
+import { isLoading } from "./controllers/LoadingSpinner.js";
+import { fetchData } from "./controllers/FetchModule.js";
+import { filterByRegion } from "./Controllers/HomePageControllers/FilterCountries.js";
+import {
+  saveFavoriteStatus,
+  removeFavoriteStatus,
+  updateStarIcon,
+  initializeFavoriteList,
+  getCountryFromCardElement,
+} from "./controllers/HomePageControllers/FavCountryFunctions.js";
 
+const favouritescontainer = document.querySelector(".favourites-container");
 const cardContainer = document.getElementById("cardContainer");
 const loadingSpinner = document.getElementById("loadingSpinner");
 const dropdownMenu = document.getElementById("dropdownMenu");
 const dropdownButton = document.getElementById("dropdownButton");
 const dropdownItems = dropdownMenu.querySelectorAll(".dropdown-item");
 const searchInput = document.getElementById("input");
-const favList = document.getElementById("favList");
-const favouritescontainer = document.querySelector(".favourites-container");
 let searchTimer;
 let selectedRegion = "No Filter";
 
@@ -28,7 +34,7 @@ async function handleData(
   searchInput.addEventListener("keyup", handleSearch);
 
   try {
-    isLoading(cardContainer, loadingSpinner);
+    isLoading(cardContainer, loadingSpinner, true);
     countriesData = await fetchData(apiUrl);
     var filteredCountries = filterByRegion(countriesData, selectedRegion);
     renderCards(filteredCountries);
@@ -37,65 +43,12 @@ async function handleData(
     cardContainer.innerHTML = "";
     cardContainer.appendChild(handleFetchError(error));
   } finally {
-    isLoading(cardContainer, loadingSpinner);
-    cardContainer.classList.remove("d-none");
+    isLoading(cardContainer, loadingSpinner, false);
   }
 }
 
-
-export function updateStarIcon(starIcon, isFavorite) {
-  starIcon.classList.toggle("fa-solid", isFavorite);
-  starIcon.classList.toggle("fa-regular", !isFavorite);
-}
-export function handleFetchError(error) {
-  var errorMessage;
-  if (error.message === "No Data Found") {
-    errorMessage = "No result Found, Please Enter Valid Country Name.";
-  } else {
-    errorMessage =
-      "An error occurred while fetching data. Please try again later.";
-  }
-
-  const errorCard = document.createElement("div");
-  errorCard.innerHTML = `
-        <div class="alert h2 text-center" role="alert">
-          ${errorMessage}
-        </div>`;
-  return errorCard;
-}
-export async function fetchData(url) {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-}
-export function isLoading(cardContainer, loadingSpinner) {
-  const updatedCardContainer = cardContainer.classList.add("d-none");
-  const updatedLoadingSpinner = loadingSpinner.classList.toggle("d-none");
-
-  return {
-    cardContainer: updatedCardContainer,
-    loadingSpinner: updatedLoadingSpinner,
-  };
-}
 handleData();
 initializeFavoriteList();
-
-function filterByRegion(countriesData, selectedRegion) {
-  var filteredData = countriesData.filter((country) => {
-    if (selectedRegion === "No Filter") {
-      return true;
-    } else if (selectedRegion === "Favorite") {
-      const favoriteCountries = Object.keys(localStorage);
-      return favoriteCountries.includes(
-        encodeURIComponent(country.name.common)
-      );
-    }
-    return country.region === selectedRegion;
-  });
-  return filteredData;
-}
 
 function renderCards(filteredData) {
   cardContainer.innerHTML = "";
@@ -106,8 +59,9 @@ function renderCards(filteredData) {
         cardContainer.appendChild(card);
       });
 }
+
 //-------------//
-function createCardElement(country) {
+export function createCardElement(country) {
   const card = document.createElement("div");
 
   card.addEventListener("dragstart", (event) => {
@@ -171,70 +125,6 @@ function createCardElement(country) {
   return card;
 }
 
-function saveFavoriteStatus(country) {
-  const countryName = encodeURIComponent(country.name);
-  const countryData = {
-    name: country.name,
-    img: country.img,
-  };
-  localStorage.setItem(countryName, JSON.stringify(countryData));
-
-  renderFavoriteCountry(countryName, countryData);
-}
-//-------------//
-function initializeFavoriteList() {
-  const favoriteCountries = Object.keys(localStorage).filter(
-    (key) => key !== "isDarkMode"
-  );
-  favoriteCountries.forEach((countryName) => {
-    const countryData = JSON.parse(localStorage.getItem(countryName));
-    renderFavoriteCountry(countryName, countryData);
-  });
-}
-//-------------//
-function renderFavoriteCountry(countryName, countryData) {
-  const favCountry = document.createElement("li");
-  favCountry.setAttribute("data-country", countryName);
-
-  const favCountryImgName = document.createElement("div");
-  favCountryImgName.className = "fav-country-img-name";
-
-  const img = document.createElement("img");
-  img.src = countryData.img;
-
-  const span = document.createElement("span");
-  span.textContent = countryData.name;
-
-  favCountryImgName.appendChild(img);
-  favCountryImgName.appendChild(span);
-  favCountry.appendChild(favCountryImgName);
-
-  const removeIcon = document.createElement("i");
-  removeIcon.className = "fa-solid fa-circle-xmark";
-  removeIcon.addEventListener("click", () => {
-    removeFavoriteStatus(countryName);
-  });
-  favCountry.appendChild(removeIcon);
-
-  favList.appendChild(favCountry);
-}
-
-//-------------//
-function removeFavoriteStatus(countryName) {
-  localStorage.removeItem(countryName);
-  const favCountry = favList.querySelector(`li[data-country="${countryName}"]`);
-  if (favCountry) {
-    favList.removeChild(favCountry);
-    const card = cardContainer.querySelector(
-      `a[href="detail.html?country-name=${countryName}"]`
-    );
-    if (card) {
-      const cardStarIcon = card.querySelector(".star-icon");
-      updateStarIcon(cardStarIcon, false);
-    }
-  }
-}
-//-------------//
 function handleSearch(event) {
   clearTimeout(searchTimer);
   searchTimer = setTimeout(() => {
@@ -257,7 +147,6 @@ function handleRegionFilter(event, countriesData) {
     dropdownButton.innerText = selectedRegion;
   }
 }
-
 favouritescontainer.addEventListener("dragover", (e) => {
   e.preventDefault();
   favouritescontainer.classList.add("highlight");
@@ -276,16 +165,3 @@ favouritescontainer.addEventListener("drop", (e) => {
     ? (updateStarIcon(country.icon, true), saveFavoriteStatus(country))
     : "";
 });
-
-function getCountryFromCardElement(cardElement) {
-  const countryName = decodeURIComponent(
-    cardElement.querySelector(".card-title").textContent
-  );
-  const countryImg = cardElement.querySelector(".card-img-top").src;
-  const icon = cardElement.querySelector(".fa-star");
-  return {
-    name: countryName,
-    img: countryImg,
-    icon: icon,
-  };
-}
