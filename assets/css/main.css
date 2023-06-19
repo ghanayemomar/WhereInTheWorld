@@ -272,6 +272,26 @@ body {
     border: 1px solid #27ae60;
 }
 
+.fav-country {
+    overflow-y: scroll;
+    height: 100%;
+
+}
+
+.fav-country::-webkit-scrollbar {
+    width: 8px;
+
+}
+
+.fav-country::-webkit-scrollbar-thumb {
+    background-color: #888888;
+    border-radius: 4px;
+    width: 8px;
+}
+
+.fav-country::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+}
 
 
 @media (max-width: 768px) {
