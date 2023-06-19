@@ -3,10 +3,10 @@ const contentContainer = document.getElementById("contentContainer");
 const loadingSpinner = document.getElementById("loadingSpinner");
 var backButton = document.getElementById("back");
 var urlCountryName;
-import { renderDetails } from "./controllers/DetailPageControllers/RenderDetails.js";
-import { fetchData } from "./controllers/FetchModule.js";
-import { handleFetchError } from "./controllers/ErrorHandler.js";
-import { isLoading } from "./controllers/LoadingSpinner.js";
+import { renderDetails } from "./Controllers/DetailPageControllers/RenderDetails.js";
+import { fetchData } from "./Controllers/FetchModule.js";
+import { handleFetchError } from "./Controllers/ErrorHandler.js";
+import { isLoading } from "./Controllers/LoadingSpinner.js";
 
 backButton.href = window.location.href.substring(
   0,

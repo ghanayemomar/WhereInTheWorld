@@ -1,5 +1,4 @@
 const favList = document.getElementById("favList");
-const favouritescontainer = document.querySelector(".favourites-container");
 
 export function saveFavoriteStatus(country) {
   const countryName = encodeURIComponent(country.name);

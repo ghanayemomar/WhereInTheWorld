@@ -1,6 +1,6 @@
-import { handleFetchError } from "./controllers/ErrorHandler.js";
-import { isLoading } from "./controllers/LoadingSpinner.js";
-import { fetchData } from "./controllers/FetchModule.js";
+import { handleFetchError } from "./Controllers/ErrorHandler.js";
+import { isLoading } from "./Controllers/LoadingSpinner.js";
+import { fetchData } from "./Controllers/FetchModule.js";
 import { filterByRegion } from "./Controllers/HomePageControllers/FilterCountries.js";
 import {
   saveFavoriteStatus,
