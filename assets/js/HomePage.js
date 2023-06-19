@@ -1,14 +1,14 @@
-import { handleFetchError } from "./Controllers/ErrorHandler.js";
-import { isLoading } from "./Controllers/LoadingSpinner.js";
-import { fetchData } from "./Controllers/FetchModule.js";
-import { filterByRegion } from "./Controllers/HomePageControllers/FilterCountries.js";
+import { handleFetchError } from "./ErrorHandler.js";
+import { isLoading } from "./LoadingSpinner.js";
+import { fetchData } from "./FetchModule.js";
+import { filterByRegion } from "./HomePageControllers/FilterCountries.js";
 import {
   saveFavoriteStatus,
   removeFavoriteStatus,
   updateStarIcon,
   initializeFavoriteList,
   getCountryFromCardElement,
-} from "./controllers/HomePageControllers/FavCountryFunctions.js";
+} from "./HomePageControllers/FavCountryFunctions.js";
 
 const favouritescontainer = document.querySelector(".favourites-container");
 const cardContainer = document.getElementById("cardContainer");
