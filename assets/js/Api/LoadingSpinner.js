@@ -1,4 +1,6 @@
-export function isLoading(cardContainer, loadingSpinner, loading) {
+const loadingSpinner = document.getElementById("loadingSpinner");
+
+export function isLoading(cardContainer, loading) {
   var updatedCardContainer;
   var updatedLoadingSpinner;
 

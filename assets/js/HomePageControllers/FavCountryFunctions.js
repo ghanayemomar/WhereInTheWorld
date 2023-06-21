@@ -67,8 +67,6 @@ export function initializeFavoriteList() {
   });
 }
 
-
-
 export function getCountryFromCardElement(cardElement) {
   const countryName = decodeURIComponent(
     cardElement.querySelector(".card-title").textContent

@@ -1,6 +1,4 @@
-import { handleFetchError } from "./ErrorHandler.js";
-import { isLoading } from "./LoadingSpinner.js";
-import { fetchData } from "./FetchModule.js";
+import { handleFetchError } from "../js/Api/ErrorHandler.js";
 import { filterByRegion } from "./HomePageControllers/FilterCountries.js";
 import {
   saveFavoriteStatus,
@@ -9,41 +7,50 @@ import {
   initializeFavoriteList,
   getCountryFromCardElement,
 } from "./HomePageControllers/FavCountryFunctions.js";
+import fetchHomePageData from "./Api/ApiController.js";
+import {
+  clearCardContainer,
+  appendChildToCardContainer,
+  noResultFound,
+  loading,
+  loaded,
+  debounce,
+} from "./HomePageControllers/HomePageView.js";
 
-const favouritescontainer = document.querySelector(".favourites-container");
-const cardContainer = document.getElementById("cardContainer");
-const loadingSpinner = document.getElementById("loadingSpinner");
 const dropdownMenu = document.getElementById("dropdownMenu");
 const dropdownButton = document.getElementById("dropdownButton");
 const dropdownItems = dropdownMenu.querySelectorAll(".dropdown-item");
 const searchInput = document.getElementById("input");
-let searchTimer;
+const favouritescontainer = document.querySelector(".favourites-container");
 let selectedRegion = "No Filter";
 
-async function handleData(
-  apiUrl = "https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags"
-) {
-  let countriesData = [];
+function handleSearch(event) {
+  const searchResult = event.target.value.trim();
+  !searchResult ? handleData() : handleData(searchResult);
+}
+const debouncedHandleSearch = debounce(handleSearch, 500);
 
+async function handleData(searchResult) {
+  let countriesData = [];
   dropdownItems.forEach((item) => {
     item.addEventListener("click", (event) => {
       handleRegionFilter(event, countriesData);
     });
   });
 
-  searchInput.addEventListener("keyup", handleSearch);
+  searchInput.addEventListener("keyup", debouncedHandleSearch);
 
   try {
-    isLoading(cardContainer, loadingSpinner, true);
-    countriesData = await fetchData(apiUrl);
+    loading();
+    countriesData = await fetchHomePageData(searchResult);
     var filteredCountries = filterByRegion(countriesData, selectedRegion);
     renderCards(filteredCountries);
   } catch (error) {
     console.log(error);
-    cardContainer.innerHTML = "";
-    cardContainer.appendChild(handleFetchError(error));
+    clearCardContainer();
+    appendChildToCardContainer(handleFetchError(error));
   } finally {
-    isLoading(cardContainer, loadingSpinner, false);
+    loaded();
   }
 }
 
@@ -51,12 +58,12 @@ handleData();
 initializeFavoriteList();
 
 function renderCards(filteredData) {
-  cardContainer.innerHTML = "";
+  clearCardContainer();
   filteredData.length === 0
-    ? (cardContainer.innerHTML = `<h2 class="text-center">No result Found.</h2>`)
+    ? noResultFound()
     : filteredData.forEach((country) => {
         const card = createCardElement(country);
-        cardContainer.appendChild(card);
+        appendChildToCardContainer(card);
       });
 }
 
@@ -123,18 +130,6 @@ export function createCardElement(country) {
   });
 
   return card;
-}
-
-function handleSearch(event) {
-  clearTimeout(searchTimer);
-  searchTimer = setTimeout(() => {
-    const searchResult = event.target.value.trim();
-    !searchResult
-      ? handleData()
-      : handleData(
-          `https://restcountries.com/v3.1/name/${searchResult}?fields=name,population,region,capital,flags`
-        );
-  }, 500);
 }
 
 function handleRegionFilter(event, countriesData) {

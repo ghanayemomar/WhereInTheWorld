@@ -1,13 +1,14 @@
 const params = new URLSearchParams(window.location.search);
 const contentContainer = document.getElementById("contentContainer");
-const loadingSpinner = document.getElementById("loadingSpinner");
 var backButton = document.getElementById("back");
 var urlCountryName;
 import { renderDetails } from "./DetailPageControllers/RenderDetails.js";
-import { fetchData } from "./FetchModule.js";
-import { handleFetchError } from "./ErrorHandler.js";
-import { isLoading } from "./LoadingSpinner.js";
-
+import {
+  fetchDetailPage,
+  fetchFullBordersName,
+} from "../js/Api/ApiController.js";
+import { isLoading } from "./Api/LoadingSpinner.js";
+import { handleFetchError } from "./Api/ErrorHandler.js";
 backButton.href = window.location.href.substring(
   0,
   window.location.href.indexOf("detail.html")
@@ -21,18 +22,14 @@ fetchDetail();
 
 async function fetchDetail() {
   try {
-    isLoading(contentContainer, loadingSpinner, true);
-    const detailData = await fetchData(
-      `https://restcountries.com/v3.1/name/${urlCountryName}?fields=name,population,region,subregion,tld,borders,currencies,capital,flags,languages`
-    );
+    isLoading(contentContainer, true);
+    const detailData = await fetchDetailPage(urlCountryName);
     const country = detailData[0];
 
     let countryFullName = [];
     const borders = Object.values(country.borders).join(",");
     if (borders) {
-      const bordersData = await fetchData(
-        `https://restcountries.com/v3.1/alpha?codes=${borders}`
-      );
+      const bordersData = await fetchFullBordersName(borders);
       countryFullName = bordersData.map((country) => country.name.common);
     }
     if (!country) {
@@ -45,6 +42,6 @@ async function fetchDetail() {
     console.log(error);
     contentContainer.appendChild(handleFetchError(error));
   } finally {
-    isLoading(contentContainer, loadingSpinner, false);
+    isLoading(contentContainer, false);
   }
 }
