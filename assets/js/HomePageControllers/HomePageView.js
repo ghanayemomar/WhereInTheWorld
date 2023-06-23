@@ -1,8 +1,7 @@
 import { isLoading } from "../Api/LoadingSpinner.js";
-
+import { handleData } from "../HomePage.js";
 const cardContainer = document.getElementById("cardContainer");
 const searchInput = document.getElementById("input");
-
 
 export function clearCardContainer() {
   cardContainer.innerHTML = "";
@@ -21,7 +20,7 @@ export function loaded() {
   isLoading(cardContainer, false);
 }
 
-export function debounce(cb, delay) {
+function debounce(cb, delay) {
   let timer;
   return function (...args) {
     clearTimeout(timer);
@@ -30,3 +29,11 @@ export function debounce(cb, delay) {
     }, delay);
   };
 }
+
+function handleSearch(event) {
+  const searchResult = event.target.value.trim();
+  !searchResult ? handleData() : handleData(searchResult);
+}
+
+const debouncedHandleSearch = debounce(handleSearch, 500);
+searchInput.addEventListener("keyup", debouncedHandleSearch);

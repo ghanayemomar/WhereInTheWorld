@@ -14,31 +14,21 @@ import {
   noResultFound,
   loading,
   loaded,
-  debounce,
 } from "./HomePageControllers/HomePageView.js";
 
 const dropdownMenu = document.getElementById("dropdownMenu");
 const dropdownButton = document.getElementById("dropdownButton");
 const dropdownItems = dropdownMenu.querySelectorAll(".dropdown-item");
-const searchInput = document.getElementById("input");
 const favouritescontainer = document.querySelector(".favourites-container");
 let selectedRegion = "No Filter";
 
-function handleSearch(event) {
-  const searchResult = event.target.value.trim();
-  !searchResult ? handleData() : handleData(searchResult);
-}
-const debouncedHandleSearch = debounce(handleSearch, 500);
-
-async function handleData(searchResult) {
+export async function handleData(searchResult) {
   let countriesData = [];
   dropdownItems.forEach((item) => {
     item.addEventListener("click", (event) => {
       handleRegionFilter(event, countriesData);
     });
   });
-
-  searchInput.addEventListener("keyup", debouncedHandleSearch);
 
   try {
     loading();
@@ -70,7 +60,6 @@ function renderCards(filteredData) {
 //-------------//
 export function createCardElement(country) {
   const card = document.createElement("div");
-
   card.addEventListener("dragstart", (event) => {
     event.dataTransfer.setData("text/plain", "");
     event.dataTransfer.setDragImage(card.querySelector(".card-img-top"), 0, 0);
@@ -142,6 +131,7 @@ function handleRegionFilter(event, countriesData) {
     dropdownButton.innerText = selectedRegion;
   }
 }
+
 favouritescontainer.addEventListener("dragover", (e) => {
   e.preventDefault();
   favouritescontainer.classList.add("highlight");
