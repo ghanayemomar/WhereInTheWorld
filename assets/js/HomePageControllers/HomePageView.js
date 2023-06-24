@@ -1,5 +1,6 @@
 import { isLoading } from "../Api/LoadingSpinner.js";
 import { handleData } from "../HomePage.js";
+import { createCardElement } from "./FavCountryFunctions.js";
 const cardContainer = document.getElementById("cardContainer");
 const searchInput = document.getElementById("input");
 
@@ -37,3 +38,13 @@ function handleSearch(event) {
 
 const debouncedHandleSearch = debounce(handleSearch, 500);
 searchInput.addEventListener("keyup", debouncedHandleSearch);
+
+export function renderCards(filteredData) {
+  clearCardContainer();
+  filteredData.length === 0
+    ? noResultFound()
+    : filteredData.forEach((country) => {
+        const card = createCardElement(country);
+        appendChildToCardContainer(card);
+      });
+}
