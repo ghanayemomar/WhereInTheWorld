@@ -1,6 +1,7 @@
 import { isLoading } from "../Api/LoadingSpinner.js";
 import { handleData } from "../HomePage.js";
 import { createCardElement } from "./FavCountryFunctions.js";
+
 const cardContainer = document.getElementById("cardContainer");
 const searchInput = document.getElementById("input");
 
